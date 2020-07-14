@@ -1015,7 +1015,7 @@ teacher_forcing_ratio = 1.0
 learning_rate = 0.0001
 decoder_learning_ratio = 5.0
 n_iteration = 2000
-print_every = 50
+print_every = 5
 save_every = 500
 
 # Ensure dropout layers are in train mode
