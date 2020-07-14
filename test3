@@ -832,13 +832,14 @@ def evaluateTest(pairs, encoder, decoder, searcher, voc):
  
     for i in tqdm(range(len(new_pair))):
         input_sentence, output_sentence = new_pair[i]
-        beam_output_words = beam_evaluate(encoder, decoder, searcher, voc, input_sentence)
-        bss = [get_bleu_result(beam2tokens(end_word, voc), [output_sentence]) for end_word in beam_output_words]
-        # print(bss)
-        beam_score = np.max(bss)
+        
   
         try:
-            beam_output_words = [beam2tokens(end_word, voc) for end_word in beam_output_words]
+            beam_output_words = beam_evaluate(encoder, decoder, searcher, voc, input_sentence)
+            bss = [get_bleu_result(beam2tokens(end_word, voc), [output_sentence]) for end_word in beam_output_words]
+            # print(bss)
+            beam_score = np.max(bss)
+            # beam_output_words = [beam2tokens(end_word, voc) for end_word in beam_output_words]
             output_words = evaluateSentence(input_sentence, encoder, decoder, searcher, voc)
             # print("IN:\t{}".format(input_sentence))
             # print("PRED:\t{}".format(output_words))
