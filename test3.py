@@ -906,8 +906,8 @@ def beam_evaluate(encoder, decoder, searcher, voc, sentence, beam_width = 5, max
                     end_nodes.append(node)
                     continue
                 decoder_output, decoder_hidden = decoder(decoder_input, decoder_hidden, encoder_outputs)
-                decoder_scores, decoder_input = torch.max(decoder_output, dim=1)
-                decoder_input = torch.unsqueeze(decoder_input, 0) 
+                # decoder_scores, decoder_input = torch.max(decoder_output, dim=1)
+                # decoder_input = torch.unsqueeze(decoder_input, 0) 
                 log_prob, indices = decoder_output.data.topk(beam_width) #选取某个父节点的儿子节点概率最大的k个
                 # print(log_prob, indices)
                 # print(log_prob[0], indices[0])
